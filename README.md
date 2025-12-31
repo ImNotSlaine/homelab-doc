@@ -19,10 +19,11 @@ Configured static IP and hostname.
 Installed Klipper, Moonraker and Mainsail via KIAUH (see KIAUH installation guide).  
 Created klipper.bin  
 >Run ´make menuconfig´ in klipper directory.  
->Select processor model STM32F103.  
->Select 28KiB bootloader.  
->Select Communication interface Serial on USART1 (PA10/PA9).  
->Save configuration and run ´make´.  
+Select processor model STM32F103.  
+Select 28KiB bootloader.  
+Select Communication interface Serial on USART1 (PA10/PA9).  
+Save configuration and run ´make´.  
+>
 Save klipper.bin to another SD card.  
 Run new firmware in the 3D printer.
 
