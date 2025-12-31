@@ -63,3 +63,5 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 
 * Installed HAProxy and Keepalived with `apt`.
 * Edited `/etc/haproxy/haproxy.cfg` and `/etc/keepalived/keepalived.conf` in all the nodes (see cluster/configs).
+  	* The Keepalived config file changes depending in the node, see [K3s doc](https://docs.k3s.io/datastore/cluster-loadbalancer) for more information.
+* Restart HAProxy and Keepalived.
