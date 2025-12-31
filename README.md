@@ -1,6 +1,7 @@
 # Homelab Documentation
 
 * KlipperPi (3D Printer)
+* ClusterPi (Cluster with K3s)
 
 ## KlipperPi (3D Printer)
 
@@ -36,6 +37,8 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 * 3 x OrangePi Zero 3 (4GB RAM)
   * Debian Bookworm Server from orangepi (edited afterward)
   * K3s
+  * Keepalived
+  * HAProxy
 * 3 x SD cards 64GB
 
 ### K3s Apps
@@ -49,27 +52,14 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 
 * Burned Debian image with Balena Etcher in SD cards.
   * Changed the default orangepi repositories with the original Debian repo.
-  * Edited the /etc/apt/sources.list to:
-
-```
-deb https://deb.debian.org/debian/ trixie contrib main non-free non-free-firmware
-# deb-src https://deb.debian.org/debian/ trixie contrib main non-free non-free-firmware
-
-deb https://deb.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware
-# deb-src https://deb.debian.org/debian/ trixie-updates contrib main non-free non-free-firmware
-
-deb https://deb.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware
-# deb-src https://deb.debian.org/debian/ trixie-proposed-updates contrib main non-free non-free-firmware
-
-deb https://deb.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware
-# deb-src https://deb.debian.org/debian/ trixie-backports contrib main non-free non-free-firmware
-
-deb https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware
-# deb-src https://security.debian.org/debian-security/ trixie-security contrib main non-free non-free-firmware
-```
-
+  * Edited the /etc/apt/sources.list (see cluster/edited-files/sources.list).
 * Run `sudo apt update` to update repositories.
   * Configured static IPs and hostname.
   * Run `sudo apt full-upgrade` for update from Bookworm to Trixie.
   * Run `sudo apt autoremove` to delete unused dependencies.
 * Use GParted Live in external device to partition the SDs for later Longhorn implementation.
+
+### Keepalived and HAProxy installation
+
+* Installed HAProxy and Keepalived with `apt`.
+* Edited `/etc/haproxy/haproxy.cfg` and `/etc/keepalived/keepalived.conf` in all the nodes (see cluster/configs).
