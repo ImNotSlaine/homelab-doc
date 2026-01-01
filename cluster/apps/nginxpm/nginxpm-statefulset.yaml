@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-proxy-manager
+  namespace: nginx
+spec:
+  serviceName: nginx-proxy-manager
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-proxy-manager
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy-manager
+    spec:
+      containers:
+      - name: npm
+        image: jc21/nginx-proxy-manager:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 81
+        - containerPort: 443
+        env:
+        - name: TZ
+          value: "Europe/Madrid"
+        volumeMounts:
+        - name: npm-data
+          mountPath: /data
+        - name: npm-letsencrypt
+          mountPath: /etc/letsencrypt
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            memory: "512Mi"
+
+  volumeClaimTemplates:
+  - metadata:
+      name: npm-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: longhorn
+      resources:
+        requests:
+          storage: 1Gi
+
+  - metadata:
+      name: npm-letsencrypt
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: longhorn
+      resources:
+        requests:
+          storage: 1Gi
