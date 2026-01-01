@@ -44,9 +44,7 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 ### K3s Apps
 
 * Longhorn
-* Jellyfin
 * NginxProxyManager
-* PiHole - DNS Server
 
 ### Initial installation
 
@@ -65,6 +63,21 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 * Edited `/etc/haproxy/haproxy.cfg` and `/etc/keepalived/keepalived.conf` in all the nodes (see cluster/configs).
   	* The Keepalived config file changes depending in the node, see [K3s doc](https://docs.k3s.io/datastore/cluster-loadbalancer) for more information.
 * Restart HAProxy and Keepalived.
+
+## NAS
+
+* Intel (4GB RAM)
+	* Debian Trixie Server
+	* SMB
+	* NFS
+* 1 x HDD 1TB
+* 1 x SSD 250GB
+
+### Initial installation
+
+* Installed Debian Trixie with openssh server.
+* Installed ufw, smb and nfs-server.
+* Oppened the SMB and NFS services with ufw.
 
 ## Final State
 
