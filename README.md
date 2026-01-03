@@ -64,12 +64,19 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
   	* The Keepalived config file changes depending in the node, see [K3s doc](https://docs.k3s.io/datastore/cluster-loadbalancer) for more information.
 * Restart HAProxy and Keepalived.
 
+### NginxProxyManager Installation
+
+* Installed NginxProxyManager with the K8s manifests in `clusterpi/nginxpm`.
+* Configured https wildcard certificate with Porkbun API and DNS Challenge.
+* Published Jellyfin with DNS record in Porkbun (access in port 30443 instead of 443).
+
 ## NAS
 
 * Intel (4GB RAM)
 	* Debian Trixie Server
 	* SMB
 	* NFS
+ * Docker
 * 1 x HDD 1TB
 * 1 x SSD 250GB
 
@@ -78,6 +85,12 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 * Installed Debian Trixie with openssh server.
 * Installed ufw, smb and nfs-server.
 * Oppened the SMB and NFS services with ufw.
+* Installed Docker Engine and Docker Compose.
+
+### Jellyfin Installation
+
+* Used the `docker-compose.yml` in `/nas/apps/jellyfin`.
+* Configured users and publish with NginxProxyManager in ClusterPi.
 
 ## Final State
 
