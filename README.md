@@ -2,6 +2,7 @@
 
 * KlipperPi (3D Printer)
 * ClusterPi (Cluster with K3s)
+* NAS (SMB and NFS server)
 
 ## KlipperPi (3D Printer)
 
@@ -106,3 +107,25 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 		* VS Code
 		* DaVinci Resolve
 		* OBS Studio
+
+* ClusterPi
+ * Debian Trixie
+ * K3s Apps
+  * NginxProxyManager
+  * MetalLB
+  * PiHole
+  * Dashy/Glance/Homepage
+  * Docmost
+  * Bitwarden/Vaultwarden
+  * Penpot
+  * Firefly III
+  * OnlyOffice
+  * Mealie
+
+* NAS
+ * Debian Trixie
+ * SMB Server
+ * NFS Server
+ * Docker
+  * Jellyfin
+  * FileBrowser Quantum
