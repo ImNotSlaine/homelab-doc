@@ -31,9 +31,10 @@
 ### Configuration
 
 printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/blob/main/printer-creality-ender3-v3-se-2023.cfg) on GitHub.  
-	Added `[include mainsail.cfg]` at the start of the config file.  
+Added `[include mainsail.cfg]` at the start of the config file.
+printer.cfg in `klipperpi/printer.cfg`.	
 
-## ClusterPi (Cluster with K3s)
+## Cluster (Cluster with K3s)
 
 * 3 x OrangePi Zero 3 (4GB RAM)
   * Debian Bookworm Server from orangepi (edited afterward)
@@ -51,7 +52,7 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 
 * Burned Debian image with Balena Etcher in SD cards.
   * Changed the default orangepi repositories with the original Debian repo.
-  * Edited the /etc/apt/sources.list (see cluster/edited-files/sources.list).
+  * Edited `/etc/apt/sources.list` (see `cluster/so/sources.list`).
 * Run `sudo apt update` to update repositories.
   * Configured static IPs and hostname.
   * Run `sudo apt full-upgrade` for update from Bookworm to Trixie.
@@ -61,30 +62,30 @@ printer.cfg from [0xD34D](https://github.com/0xD34D/ender3-v3-se-klipper-config/
 ### Keepalived and HAProxy installation
 
 * Installed HAProxy and Keepalived with `apt`.
-* Edited `/etc/haproxy/haproxy.cfg` and `/etc/keepalived/keepalived.conf` in all the nodes (see cluster/configs).
+* Edited `/etc/haproxy/haproxy.cfg` and `/etc/keepalived/keepalived.conf` in all the nodes (config files in `cluster/configs`).
   	* The Keepalived config file changes depending in the node, see [K3s doc](https://docs.k3s.io/datastore/cluster-loadbalancer) for more information.
 * Restart HAProxy and Keepalived.
 
 ### NginxProxyManager Installation
 
-* Installed NginxProxyManager with the K8s manifests in `clusterpi/nginxpm`.
+* Installed NginxProxyManager with the K8s manifests in `cluster/apps/nginxpm`.
 * Configured https wildcard certificate with Porkbun API and DNS Challenge.
 * Published Jellyfin with DNS record in Porkbun (access in port 30443 instead of 443).
 
 ## NAS
 
-* Intel (4GB RAM)
+* Intel Pentium G3220 @ 3.00 GHz (8GB RAM)
 	* Debian Trixie Server
 	* SMB
 	* NFS
- * Docker
+	* Docker
 * 1 x HDD 1TB
 * 1 x SSD 250GB
 
 ### Initial installation
 
 * Installed Debian Trixie with openssh server.
-* Installed ufw, smb and nfs-server.
+* Installed `ufw`, `smb` and `nfs-kernel-server`.
 * Oppened the SMB and NFS services with ufw.
 * Installed Docker Engine and Docker Compose.
 
